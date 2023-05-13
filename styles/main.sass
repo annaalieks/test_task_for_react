@@ -1,0 +1,94 @@
+// Variables
+
+$white: #FFF
+$navy-green: #083644
+
+// Mixins
+
+@mixin poppins-regular($font-weight: 400)
+    font-family: "Poppins", system-ui
+    font-weight: $font-weight
+    font-size: 18px
+    line-height: 27px
+    color: $white
+
+@mixin poppins-medium($font-weight: 500)
+    font-family: "Poppins", system-ui
+    font-weight: $font-weight
+    font-size: 14px
+    line-height: 20px
+    color: $white
+
+@mixin plus-jakarta-regular($font-weight: 400)
+    font-family: "Plus Jakarta Sans", system-ui
+    font-weight: $font-weight
+
+@mixin plus-jakarta-medium($font-weight: 500)
+    font-family: "Plus Jakarta Sans", system-ui
+    font-weight: $font-weight
+
+@mixin plus-jakarta-bold($font-weight: 700)
+    font-family: "Plus Jakarta Sans", system-ui
+    font-weight: $font-weight
+
+@mixin desktop
+    @media only screen and (min-width: 1200px)
+        @content
+
+@mixin shevron
+    content: ""
+    display: inline-block
+    height: 10px
+    width: 10px
+    border-left: 2px solid #FFF
+    border-bottom: 2px solid #FFF
+
+// Basics
+
+*, *:before, *:after
+    box-sizing: border-box
+
+body
+    @include plus-jakarta-regular
+    margin: 0 auto
+    min-width: 280px
+
+a
+    text-decoration: none
+
+// Header
+
+.header
+    background-color: $navy-green
+
+.container--header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 25px 30px
+
+.btn
+    @include poppins-regular
+
+.btn--back::before
+    @include shevron
+    transform: rotate(45deg)
+    margin-right: 15px
+
+.continer--nav
+    display: flex
+    gap: 24px
+
+.icon
+    width: 18px
+    height: 16px
+
+// Main
+
+.container--main
+    padding: 15px 20px 35px
+
+@include desktop
+    .container--inner
+        max-width: 1200px
+        margin: 0 auto
