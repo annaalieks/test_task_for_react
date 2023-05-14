@@ -36,13 +36,23 @@
     <main class="main">
         <div class="container container--inner container--main">
             <form class="container container--search">
-                <input type="text" class="artist">
-                <div class="container">
-                    <select name="genre" id=""></select>
-                    <select name="decade" id=""></decade>
+                <input class="input input--full input--artist" type="text" id="artist" name="artist" placeholder="Artist" required>
+                <div class="container container--flex">
+                    <select class="input input--half input--select input--genre" id="genre" name="genre" required>
+                        <option class="placeholder-option" value="" disabled selected>Genre</option>
+                        <option value="reserve-for-personal-event">Reserve for personal event</option>
+                        <option value="buy-tickets-for-a-next-concert">Buy tickets for a next concert</option>
+                        <option value="reserve-for-a-venue">Reserve from a venue</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <select class="input input--half input--select input--decade" id="decade" name="decade" required>
+                        <option class="placeholder-option" value="" disabled selected>Decade</option>
+                    </select>
                 </div>
-                <select name="country" id=""></country>
-                <input type="submit" value="Search">
+                <select class="input input--full input--select input--country" id="country" name="country"required>
+                    <option class="placeholder-option" value="" disabled selected>Country</option>
+                </select>
+                <input class="input input--full input--submit" type="submit" value="Search">
             </form>
             <div class="container container--collection">
                 <div class="disc__holder">
@@ -86,5 +96,7 @@
                 stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
         </symbol>
     </svg>
+
+    <script src="script.js"></script>
 </body>
 </html>

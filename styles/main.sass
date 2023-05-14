@@ -5,29 +5,14 @@ $navy-green: #083644
 
 // Mixins
 
-@mixin poppins-regular($font-weight: 400)
+@mixin poppins($font-weight: 400)
     font-family: "Poppins", system-ui
     font-weight: $font-weight
     font-size: 18px
     line-height: 27px
     color: $white
 
-@mixin poppins-medium($font-weight: 500)
-    font-family: "Poppins", system-ui
-    font-weight: $font-weight
-    font-size: 14px
-    line-height: 20px
-    color: $white
-
-@mixin plus-jakarta-regular($font-weight: 400)
-    font-family: "Plus Jakarta Sans", system-ui
-    font-weight: $font-weight
-
-@mixin plus-jakarta-medium($font-weight: 500)
-    font-family: "Plus Jakarta Sans", system-ui
-    font-weight: $font-weight
-
-@mixin plus-jakarta-bold($font-weight: 700)
+@mixin plus-jakarta($font-weight: 400)
     font-family: "Plus Jakarta Sans", system-ui
     font-weight: $font-weight
 
@@ -35,13 +20,25 @@ $navy-green: #083644
     @media only screen and (min-width: 1200px)
         @content
 
-@mixin shevron
+@mixin shevron($color: $white)
     content: ""
     display: inline-block
     height: 10px
     width: 10px
-    border-left: 2px solid #FFF
-    border-bottom: 2px solid #FFF
+    color: $color
+    border-left: 2px solid
+    border-bottom: 2px solid
+
+@mixin input
+    border: 1px solid #EDEEF0
+    color: #6C7072
+    padding: 13px 14px
+    @include plus-jakarta
+    font-size: 16px
+    line-height: 20px
+    border-radius: 4px
+    margin-bottom: 12px
+    appearance: none
 
 // Basics
 
@@ -49,7 +46,7 @@ $navy-green: #083644
     box-sizing: border-box
 
 body
-    @include plus-jakarta-regular
+    @include plus-jakarta
     margin: 0 auto
     min-width: 280px
 
@@ -68,12 +65,17 @@ a
     padding: 25px 30px
 
 .btn
-    @include poppins-regular
-
-.btn--back::before
-    @include shevron
-    transform: rotate(45deg)
-    margin-right: 15px
+    @include poppins
+    &--back::before
+        @include shevron
+        transform: rotate(45deg)
+        margin-right: 15px
+    &--back:hover::before
+        margin-left: -5px
+        margin-right: 20px
+        transition: all 0.3s linear
+    &:hover .icon
+        transform: scale(1.2)
 
 .continer--nav
     display: flex
@@ -88,7 +90,37 @@ a
 .container--main
     padding: 15px 20px 35px
 
+// Form
+
+.input
+    &--full
+        width: 100%
+        @include input
+    &--half
+        @include input
+        width: 50%
+    &--submit
+        background-color: $navy-green
+        color: $white
+        @include plus-jakarta($font-weight: 500)
+    &--select
+        position: relative
+        &::after
+            @include shevron($color: $navy-green)
+            position: absolute
+            top: calc(50% - 5px)
+            right: 18px
+            transform: rotate(-45deg)
+
+.container--flex
+    display: flex
+    gap: 10px
+
 @include desktop
     .container--inner
         max-width: 1200px
+        margin: 0 auto
+
+    .container--search
+        max-width: 50%
         margin: 0 auto
