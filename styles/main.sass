@@ -1,7 +1,12 @@
 // Variables
 
 $white: #FFF
+$black: #000
 $navy-green: #083644
+$red: #FF0000
+$dark: #0A2530
+$grey: #738286
+$outline: 2px solid $navy-green
 
 // Mixins
 
@@ -18,6 +23,10 @@ $navy-green: #083644
 
 @mixin desktop
     @media only screen and (min-width: 1200px)
+        @content
+
+@mixin tablet
+    @media only screen and (min-width: 768px) and (max-width: 1199px)
         @content
 
 @mixin shevron($color: $white)
@@ -48,21 +57,63 @@ $navy-green: #083644
 body
     @include plus-jakarta
     margin: 0 auto
-    min-width: 280px
+    min-width: 390px
+    font-size: 14px
+    color: $dark
 
 a
     text-decoration: none
+
+ul
+    padding: 0
+
+li
+    list-style-type: none
+
+.btn
+    appearance: none
 
 // Header
 
 .header
     background-color: $navy-green
 
-.container--header
-    display: flex
-    justify-content: space-between
-    align-items: center
-    padding: 25px 30px
+.container
+    &--header
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 25px 30px
+    &--nav
+        display: flex
+        gap: 24px
+    &--main
+        padding: 15px 20px 35px
+    &--flex
+        display: flex
+        gap: 10px
+    &--collection
+        display: grid
+        grid-template-columns: 1fr 1fr
+        align-items: center
+        gap: 12px
+        margin-top: 18px
+    &--pagination
+        margin-top: 20px
+        display: flex
+        justify-content: center
+    &--full
+        width: 100%
+    &--half
+        width: 50%
+    &--select
+        position: relative
+        &::after
+            @include shevron($color: $navy-green)
+            position: absolute
+            top: calc(50% - 10px)
+            right: 18px
+            transform: rotate(-45deg)
 
 .btn
     @include poppins
@@ -76,51 +127,157 @@ a
         transition: all 0.3s linear
     &:hover .icon
         transform: scale(1.2)
-
-.continer--nav
-    display: flex
-    gap: 24px
+    &--add-to-collection
+        width: 100%
+        background-color: $navy-green
+        border-radius: 4px
+        border: none
+        padding: 11px 0
+        @include plus-jakarta($font-weight: 500)
+        &:hover, &:active
+            outline: $outline
+        &::after
+            content: url(../img/plus.svg)
+            display: inline-block
+            margin-left: 5px
+    &--add-to-favourites
+        border-radius: 4px
+        width: 24px
+        height: 24px
+        display: flex
+        align-items: center
+        justify-content: center
+        padding: 0
+        border: none
+        position: absolute
+        top: 10px
+        left: 10px
+        & .icon
+            width: 13px
+            height: 11px
+            stroke: $black
 
 .icon
     width: 18px
     height: 16px
-
-// Main
-
-.container--main
-    padding: 15px 20px 35px
+    stroke: $white
 
 // Form
 
 .input
-    &--full
-        width: 100%
-        @include input
-    &--half
-        @include input
-        width: 50%
-    &--submit
+    width: 100%
+    @include input
+    position: relative
+    z-index: 2
+    background: transparent
+    &:focus
+        outline: $outline
+    &--search
         background-color: $navy-green
         color: $white
         @include plus-jakarta($font-weight: 500)
-    &--select
-        position: relative
-        &::after
-            @include shevron($color: $navy-green)
-            position: absolute
-            top: calc(50% - 5px)
-            right: 18px
-            transform: rotate(-45deg)
+        border: none
+        &:hover
+            outline: $outline
 
-.container--flex
-    display: flex
-    gap: 10px
+.error-message
+    color: $red
+    display: block
+    margin-bottom: 10px
+    font-size: 12px
+
+.disc
+    &__holder
+        min-width: 169px
+    &__name
+        font-weight: 700
+        font-size: 14px
+        margin: 0
+        padding-bottom: 3px
+    &__artist
+        font-weight: 500
+        padding-bottom: 7px
+    &__container
+        padding-bottom: 3px
+        &:last-child
+            padding-bottom: 11px
+    &__image
+        width: 100%
+        height: 0
+        padding-top: 100%
+        margin-bottom: 8px
+        background-size: cover
+        background-repeat: no-repeat
+        position: relative
+        &--one
+            background-image: url("img/album_cover.jpg")
+            background-image: -webkit-image-set(url("../img/album_cover_1.jpg") 1x, url("../img/album_cover_1_x2.jpg") 2x)
+        &--two
+            background-image: url("img/album_cover.jpg")
+            background-image: -webkit-image-set(url("../img/album_cover_2.jpg") 1x, url("../img/album_cover_2_x2.jpg") 2x)
+        &--three
+            background-image: url("img/album_cover.jpg")
+            background-image: -webkit-image-set(url("../img/album_cover_3.jpg") 1x, url("../img/album_cover_3_x2.jpg") 2x)
+        &--four
+            background-image: url("img/album_cover.jpg")
+            background-image: -webkit-image-set(url("../img/album_cover_4.jpg") 1x, url("../img/album_cover_4_x2.jpg") 2x)
+        &--five
+            background-image: url("img/album_cover.jpg")
+            background-image: -webkit-image-set(url("../img/album_cover_5.jpg") 1x, url("../img/album_cover_5_x2.jpg") 2x)
+        &--six
+            background-image: url("img/album_cover.jpg")
+            background-image: -webkit-image-set(url("../img/album_cover_6.jpg") 1x, url("../img/album_cover_6_x2.jpg") 2x)
+    &__description *
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+.label
+    color: $grey
+
+.value
+    @include poppins
+    color: $dark
+    font-size: 14px
+    line-height: 18px
+
+.pagination
+    &__link
+        border-radius: 4px
+        border: none
+        width: 40px
+        height: 40px
+        display: flex
+        align-items: center
+        justify-content: center
+        font-size: 14px
+        color: $grey
+        background: transparent
+        &.active
+            background-color: $navy-green
+            color: #FFF
+    &__ellipsis
+        width: 40px
+        height: 40px
+        display: flex
+        align-items: center
+        justify-content: center
+        font-size: 14px
+        font-weight: 500
 
 @include desktop
-    .container--inner
-        max-width: 1200px
-        margin: 0 auto
+    .container
+        &--inner
+            max-width: 1200px
+            margin: 0 auto
+        &--search
+            max-width: 50%
+            margin: 0 auto
+        &--collection
+            grid-template-columns: repeat(6, 1fr)
 
-    .container--search
-        max-width: 50%
-        margin: 0 auto
+@include tablet
+
+    .container
+        &--collection
+            grid-template-columns: repeat(4, 1fr)

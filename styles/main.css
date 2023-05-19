@@ -6,11 +6,27 @@ body {
   font-family: "Plus Jakarta Sans", system-ui;
   font-weight: 400;
   margin: 0 auto;
-  min-width: 280px;
+  min-width: 390px;
+  font-size: 14px;
+  color: #0A2530;
 }
 
 a {
   text-decoration: none;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.btn {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .header {
@@ -22,6 +38,51 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 25px 30px;
+}
+.container--nav {
+  display: flex;
+  gap: 24px;
+}
+.container--main {
+  padding: 15px 20px 35px;
+}
+.container--flex {
+  display: flex;
+  gap: 10px;
+}
+.container--collection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+.container--pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.container--full {
+  width: 100%;
+}
+.container--half {
+  width: 50%;
+}
+.container--select {
+  position: relative;
+}
+.container--select::after {
+  content: "";
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  color: #083644;
+  border-left: 2px solid;
+  border-bottom: 2px solid;
+  position: absolute;
+  top: calc(50% - 10px);
+  right: 18px;
+  transform: rotate(-45deg);
 }
 
 .btn {
@@ -50,22 +111,49 @@ a {
 .btn:hover .icon {
   transform: scale(1.2);
 }
-
-.continer--nav {
+.btn--add-to-collection {
+  width: 100%;
+  background-color: #083644;
+  border-radius: 4px;
+  border: none;
+  padding: 11px 0;
+  font-family: "Plus Jakarta Sans", system-ui;
+  font-weight: 500;
+}
+.btn--add-to-collection:hover, .btn--add-to-collection:active {
+  outline: 2px solid #083644;
+}
+.btn--add-to-collection::after {
+  content: url(../img/plus.svg);
+  display: inline-block;
+  margin-left: 5px;
+}
+.btn--add-to-favourites {
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
   display: flex;
-  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.btn--add-to-favourites .icon {
+  width: 13px;
+  height: 11px;
+  stroke: #000;
 }
 
 .icon {
   width: 18px;
   height: 16px;
+  stroke: #FFF;
 }
 
-.container--main {
-  padding: 15px 20px 35px;
-}
-
-.input--full {
+.input {
   width: 100%;
   border: 1px solid #EDEEF0;
   color: #6C7072;
@@ -79,48 +167,128 @@ a {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  position: relative;
+  z-index: 2;
+  background: transparent;
 }
-.input--half {
-  border: 1px solid #EDEEF0;
-  color: #6C7072;
-  padding: 13px 14px;
-  font-family: "Plus Jakarta Sans", system-ui;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  border-radius: 4px;
-  margin-bottom: 12px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  width: 50%;
+.input:focus {
+  outline: 2px solid #083644;
 }
-.input--submit {
+.input--search {
   background-color: #083644;
   color: #FFF;
   font-family: "Plus Jakarta Sans", system-ui;
   font-weight: 500;
+  border: none;
 }
-.input--select {
-  position: relative;
-}
-.input--select::after {
-  content: "";
-  display: inline-block;
-  height: 10px;
-  width: 10px;
-  color: #083644;
-  border-left: 2px solid;
-  border-bottom: 2px solid;
-  position: absolute;
-  top: calc(50% - 5px);
-  right: 18px;
-  transform: rotate(-45deg);
+.input--search:hover {
+  outline: 2px solid #083644;
 }
 
-.container--flex {
+.error-message {
+  color: #FF0000;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.disc__holder {
+  min-width: 169px;
+}
+.disc__name {
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0;
+  padding-bottom: 3px;
+}
+.disc__artist {
+  font-weight: 500;
+  padding-bottom: 7px;
+}
+.disc__container {
+  padding-bottom: 3px;
+}
+.disc__container:last-child {
+  padding-bottom: 11px;
+}
+.disc__image {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  margin-bottom: 8px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.disc__image--one {
+  background-image: url("img/album_cover.jpg");
+  background-image: -webkit-image-set(url("../img/album_cover_1.jpg") 1x, url("../img/album_cover_1_x2.jpg") 2x);
+}
+.disc__image--two {
+  background-image: url("img/album_cover.jpg");
+  background-image: -webkit-image-set(url("../img/album_cover_2.jpg") 1x, url("../img/album_cover_2_x2.jpg") 2x);
+}
+.disc__image--three {
+  background-image: url("img/album_cover.jpg");
+  background-image: -webkit-image-set(url("../img/album_cover_3.jpg") 1x, url("../img/album_cover_3_x2.jpg") 2x);
+}
+.disc__image--four {
+  background-image: url("img/album_cover.jpg");
+  background-image: -webkit-image-set(url("../img/album_cover_4.jpg") 1x, url("../img/album_cover_4_x2.jpg") 2x);
+}
+.disc__image--five {
+  background-image: url("img/album_cover.jpg");
+  background-image: -webkit-image-set(url("../img/album_cover_5.jpg") 1x, url("../img/album_cover_5_x2.jpg") 2x);
+}
+.disc__image--six {
+  background-image: url("img/album_cover.jpg");
+  background-image: -webkit-image-set(url("../img/album_cover_6.jpg") 1x, url("../img/album_cover_6_x2.jpg") 2x);
+}
+.disc__description * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label {
+  color: #738286;
+}
+
+.value {
+  font-family: "Poppins", system-ui;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #FFF;
+  color: #0A2530;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.pagination__link {
+  border-radius: 4px;
+  border: none;
+  width: 40px;
+  height: 40px;
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #738286;
+  background: transparent;
+}
+.pagination__link.active {
+  background-color: #083644;
+  color: #FFF;
+}
+.pagination__ellipsis {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -131,5 +299,13 @@ a {
   .container--search {
     max-width: 50%;
     margin: 0 auto;
+  }
+  .container--collection {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .container--collection {
+    grid-template-columns: repeat(4, 1fr);
   }
 }/*# sourceMappingURL=main.css.map */
